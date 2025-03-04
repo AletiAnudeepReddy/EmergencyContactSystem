@@ -125,13 +125,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-size: 20px;
     font-weight: bold;
     color: #333333;
     transition: width 0.3s ease-in-out;
 }
-
+.default{
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #F4F4F4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    transition: width 0.3s ease-in-out;
+    justify-content: center;
+}
 #nav-emergency {
     background-color: #D32F2F; 
     color: white;
@@ -192,10 +203,6 @@
     animation: fadeIn 0.6s ease-out;
 }
 
-.contact-form h2{
-    text-align: center;
-    font-size: 25px;
-}
 
 /* Form Styling */
 #add-contact-form {
@@ -340,4 +347,161 @@
 }
 
 
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background: #F4F4F4;
+    animation: fadeInSlide 0.6s ease-out;
+}
 
+.about-content {
+    margin-top: auto;
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-content h2 {
+    font-size: 28px;
+    color: #004225;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.features {
+    margin-top: 20px;
+}
+
+.features h3 {
+    font-size: 22px;
+    color: #008B45;
+    margin-bottom: 10px;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features ul li {
+    font-size: 16px;
+    color: #555;
+    background: #E8F5E9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.contacts-grid {
+    margin-top: 2vh;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr)); /* Exactly 2 contacts per row */
+    gap: 20px;
+    padding: 20px;
+}
+.allcontact{
+    text-align: center;
+    font-size: 25px;
+}
+
+@media (max-width: 736px) {
+    .keerthy{
+        margin-top: 250px;
+    }
+    .contacts-grid {
+        grid-template-columns: repeat(1, minmax(250px, 1fr)); /* 1 contact per row on small screens */
+    }
+}
+@media (max-width: 480px) {
+    .keerthy{
+        margin-top: 10px;
+    }
+    .contacts-grid {
+        margin-top: 10px;
+        grid-template-columns: repeat(1, minmax(250px, 1fr)); /* 1 contact per row on small screens */
+    }
+}
+.contact-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.contact-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card h3 {
+    font-size: 18px;
+    color: #004225;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.contact-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-card i {
+    color: #008B45;
+}
+
+.call-btn {
+    background: #008B45;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.call-btn i {
+    color: white;
+}
+
+.call-btn:hover {
+    background: #005f30;
+}
