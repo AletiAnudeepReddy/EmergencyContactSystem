@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const contactsBtn = document.getElementById("nav-contacts");
     const updateContactBtn = document.getElementById("nav-update-contact");
     const aboutBtn = document.getElementById("nav-about");
+    const deleteBtn=document.getElementById("nav-delete-contact");
 
     const mainContent = document.getElementById("main-content");
 
@@ -165,4 +166,76 @@ contactsBtn.addEventListener("click", function (event) {
             </div>
         `;
     });
+    deleteBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+    
+        // Show the input field and delete button
+        mainContent.innerHTML = `
+            <h2 class="allcontacts"><i class="fas fa-user-minus"></i> Delete Contact</h2>
+            <div class="delete-form">
+                <input type="text" id="delete-name" placeholder="Enter Contact Name">
+                <button id="confirm-delete">Delete</button>
+            </div>
+        `;
+    
+        // Event listener for delete action
+        document.getElementById("confirm-delete").addEventListener("click", function () {
+            const nameToDelete = document.getElementById("delete-name").value.trim();
+    
+            if (nameToDelete === "") {
+                alert("Please enter a contact name.");
+                return;
+            }
+    
+            alert(`Contact "${nameToDelete}" will be deleted (backend implementation needed).`);
+        });
+    });
+    // Event Listener for Search Button
+document.getElementById("nav-search-contact").addEventListener("click", function (event) {
+    event.preventDefault();
+    showSearchForm();
 });
+
+// Function to show search form
+function showSearchForm() {
+    let searchHTML = `
+        <div class="search-form">
+            <input type="text" id="searchInput" placeholder="Enter contact name">
+            <button id="searchNow"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        </div>
+        <div id="searchResults"></div>
+    `;
+    mainContent.innerHTML = searchHTML;
+
+    // Add Event Listener to the search button after it's added to the DOM
+    document.getElementById("searchNow").addEventListener("click", searchContact);
+}
+
+// Function to search contacts
+function searchContact() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(searchInput));
+    
+    let resultHTML = `<h3>Search Results:</h3>`;
+    if (filteredContacts.length > 0) {
+        filteredContacts.forEach(contact => {
+            resultHTML += `
+                <div class="contact-card">
+                    <h3><i class="fa-solid fa-user"></i> ${contact.name}</h3>
+                    <p><i class="fa-solid fa-phone"></i> ${contact.phone}</p>
+                    <p><i class="fa-solid fa-star"></i> Priority: ${contact.priority}</p>
+                </div>
+            `;
+        });
+    } else {
+        resultHTML += `<p class="no-result">No contact found.</p>`;
+    }
+    
+    document.getElementById("searchResults").innerHTML = resultHTML;
+}
+
+});
+
+
+
+

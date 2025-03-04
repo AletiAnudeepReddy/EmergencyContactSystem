@@ -1,0 +1,184 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #F0F8F0;
+    animation: fadeInBody 1s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Header */
+#header {
+    background-color: #004225;
+    color: white;
+    padding: 20px;
+    font-size: 2.4vh;
+    font-weight: bold;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.8s ease-in-out, height 0.8s ease-in-out;
+    animation: fadeinSlide 0.8s ease-out;
+}
+
+/* Header Animation */
+@keyframes fadeinSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 50px;
+    flex-wrap: wrap;
+    animation: fadeInContainer 0.8s ease-in-out;
+}
+
+/* Fade-in for Boxes */
+@keyframes fadeInContainer {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.box {
+    width: 37%;
+    min-height: 50vh;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.box:hover {
+    transform: scale(1.03);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.register, .login {
+    background-color: white;
+}
+
+.box h2 {
+    margin-bottom: 20px;
+    color: #555;
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+.box i {
+    margin-right: 10px;
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: slideInForm 0.8s ease-in-out;
+}
+
+@keyframes slideInForm {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-group {
+    border: 1.5px solid #008B45;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: border 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.input-group:hover {
+    border: 2px solid #00A36C;
+    transform: scale(1.02);
+}
+.input-group i {
+    margin-right: 10px;
+    color: #004225;
+    transition: color 0.3s ease-in-out;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    color: #008B45;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #008B45;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #003619;
+    transform: scale(1.05);
+}
+
+@media (max-width: 1024px) { 
+    .box {
+        width: 45%;
+    }
+}
+
+@media (max-width: 700px) { 
+    .container {
+        flex-direction: column;
+    }
+    .box {
+        width: 100%;
+        min-height: auto;
+        padding: 2rem;
+    }
+}
