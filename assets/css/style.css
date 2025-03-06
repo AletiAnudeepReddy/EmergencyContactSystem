@@ -24,6 +24,34 @@
     padding-right: 40px;
     
 }
+
+#user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFCC00;
+}
+
+#sign-out {
+    font-size: 22px;
+    color: red; /* Red sign-out icon */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#sign-out:hover {
+    transform: scale(1.2);
+    color: #B71C1C; /* Darker red on hover */
+}
+@media screen and (max-width: 480px){
+    #header{
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+}
 /* Header Animation */
 @keyframes fadeinSlide {
     from {
@@ -35,11 +63,7 @@
         transform: translateY(0);
     }
 }
-#user-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #FFD700; /* Gold color */
-}
+
 
 
 #container {
@@ -84,11 +108,7 @@
 }
 
 
-#sidebar ul li:hover {
-    border-radius: 1rem;
-    background-color: #00A36C; /* Lighter Green */
-    transform: scale(1.05);
-}
+
 
 #sidebar ul li a {
     text-decoration: none;
@@ -98,6 +118,11 @@
     align-items: center;
     padding: 10px;
     border-radius: 5px;
+}
+#sidebar ul li a:hover {
+    border-radius: 1rem;
+    background-color: #00A36C; /* Lighter Green */
+    transform: scale(1.05);
 }
 
 #sidebar ul li a i {
@@ -186,7 +211,59 @@
 }
 
 
+.profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+    margin-top: 5vh;
+}
 
+/* Profile Icon */
+.profile-card i {
+    font-size: 120px;
+    color: #004225;
+    margin-bottom: 15px;
+}
+
+/* Text Styling */
+.profile-card h2 {
+    margin: 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-card p {
+    font-size: 16px;
+    margin-top: 2vh;
+    color: #555;
+}
+
+/* Hover Effect */
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .add-contact-container {
     display: flex;

@@ -53,13 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok && data.token) {
                     // ✅ Store token for authentication
                     localStorage.setItem("authToken", data.token);
-
+                
+                    // ✅ Store user details in localStorage
+                    if (data.user) {
+                        localStorage.setItem("userName", data.user.name || "User");
+                        localStorage.setItem("userEmail", data.user.email || "user@example.com");
+                        localStorage.setItem("userPhone", data.user.phone || "Not provided");
+                    }
+                
                     alert("Login successful!");
+                    
                     console.log("Redirecting to index.html...");
-
+                
                     setTimeout(() => {
                         window.location.href = "index.html";
-                    }, 100);
+                    }, 100);               
                 } else {
                     alert(data.message || "Login failed");
                 }

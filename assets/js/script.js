@@ -6,23 +6,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteBtn=document.getElementById("nav-delete-contact");
 
     const mainContent = document.getElementById("main-content");
-    const userName = localStorage.getItem("userName") || "User"; 
-    const userEmail = localStorage.getItem("userEmail") || "user@example.com"; 
-    const userPhone = localStorage.getItem("userPhone") || "Not provided"; 
 
-    // Display user name in the header (if applicable)
+    // ✅ Retrieve user details from localStorage
+    const userName = localStorage.getItem("userName") || "User";
+    const userEmail = localStorage.getItem("userEmail") || "user@example.com";
+    const userPhone = localStorage.getItem("userPhone") || "Not provided";
+
+    // ✅ Display user name in the header
     const userNameElement = document.getElementById("user-name");
     if (userNameElement) {
         userNameElement.textContent = `Welcome, ${userName}`;
     }
 
-    // Add event listener to "Profile" button
+    // ✅ "Profile" Button Event Listener
     const profileBtn = document.getElementById("nav-profile");
     if (profileBtn) {
         profileBtn.addEventListener("click", function () {
             mainContent.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px;">
-                    <i class="fa-solid fa-user-circle" style="font-size: 120px; color: #004225; margin-bottom: 20px;"></i>
+                <div class="profile-card">
+                    <i class="fa-solid fa-user-circle"></i>
                     <h2>${userName}</h2>
                     <p><strong>Email:</strong> ${userEmail}</p>
                     <p><strong>Phone:</strong> ${userPhone}</p>
@@ -30,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
         });
     }
+    document.getElementById("sign-out").addEventListener("click", function () {
+        window.location.href = "main.html"; // Redirect to main page on sign-out
+    });
 
     addContactBtn.addEventListener("click", function (event) {
         event.preventDefault(); 
