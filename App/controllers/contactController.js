@@ -3,9 +3,15 @@ const Contact = require('../models/Contact');
 // Create Contact
 exports.createContact = async (req, res) => {
     try {
-        const { name, phone, priority, category } = req.body; // Include category
+        console.log("Request Body:", req.body);
+        const { name, phone, priority, category } = req.body;
+
+        if (!name || !phone || !priority || !category) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
         const newContact = new Contact({
-            userId: req.user.userId, // Get userId from decoded JWT token
+            userId: req.user.userId,
             name,
             phone,
             priority,
@@ -13,12 +19,15 @@ exports.createContact = async (req, res) => {
         });
 
         await newContact.save();
+        console.log("Contact Saved:", newContact);
         res.status(201).json({ message: "Contact added successfully", contact: newContact });
 
     } catch (error) {
+        console.error("Error:", error);
         res.status(500).json({ message: "Error adding contact", error });
     }
 };
+
 
 // Get Contacts
 exports.getContacts = async (req, res) => {

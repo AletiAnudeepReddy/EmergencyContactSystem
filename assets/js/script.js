@@ -36,37 +36,70 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "main.html"; // Redirect to main page on sign-out
     });
 
-    addContactBtn.addEventListener("click", function (event) {
-        event.preventDefault(); 
-        mainContent.innerHTML = `
-    <div class="add-contact-container">
-        <div class="contact-form">
-            <h2><i class="fas fa-user-plus"></i>Add Contact</h2>
-            <form id="add-contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" required>
-
-                <label for="mobile">Mobile No.:</label>
-                <input type="text" id="mobile" required>
-
-                <label for="priority">Priority:</label>
-                <input type="number" id="priority" min="1" max="5" required>
-
-                <label for="category">Category:</label>
-                <select id="category">
-                    <option value="family">Family</option>
-                    <option value="friend">Friend</option>
-                    <option value="others">Others</option>
-                </select>
-
-                <button type="submit">Save Contact</button>
-            </form>
-        </div>
-    </div>
-`;
-
-    });
-
+    if (addContactBtn) {
+        addContactBtn.addEventListener("click", function (event) {
+            event.preventDefault(); 
+            
+            mainContent.innerHTML = `
+                <div class="add-contact-container">
+                    <div class="contact-form">
+                        <h2><i class="fas fa-user-plus"></i> Add Contact</h2>
+                        <form id="add-contact-form">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" required>
+    
+                            <label for="mobile">Mobile No.:</label>
+                            <input type="text" id="mobile" required>
+    
+                            <label for="priority">Priority:</label>
+                            <input type="number" id="priority" min="1" max="5" required>
+    
+                            <label for="category">Category:</label>
+                            <select id="category">
+                                <option value="family">Family</option>
+                                <option value="friend">Friend</option>
+                                <option value="others">Others</option>
+                            </select>
+    
+                            <button type="submit">Save Contact</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+    
+            // Now the form exists in the DOM, so we can add the event listener
+            document.getElementById("add-contact-form").addEventListener("submit", async function (e) {
+                e.preventDefault();
+    
+                const name = document.getElementById("name").value;
+                const phone = document.getElementById("mobile").value;
+                const priority = document.getElementById("priority").value;
+                const category = document.getElementById("category").value;
+    
+                try {
+                    const response = await fetch("/api/contacts/add", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        },
+                        body: JSON.stringify({ name, phone, priority, category })
+                    });
+    
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert("Contact added successfully!");
+                        loadContacts();
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                } catch (error) {
+                    console.error("Error adding contact:", error);
+                    alert("Something went wrong!");
+                }
+            });
+        });
+    }
     // Define callContact globally
 function callContact(phoneNumber) {
     alert("Calling " + phoneNumber);
