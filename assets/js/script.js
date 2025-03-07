@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const addContactBtn = document.getElementById("nav-add-contact");
     const contactsBtn = document.getElementById("nav-contacts");
